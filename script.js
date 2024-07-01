@@ -1,5 +1,5 @@
 // Ngrok URL to your Flask server (update this with your actual Ngrok URL)
-const ngrokUrl = 'https://b85f-35-234-34-227.ngrok-free.app';
+const ngrokUrl = 'https://b85f-35-234-34-227.ngrok-free.app'; // Replace with your Ngrok URL
 
 function openTab(evt, tabName) {
     // Hide all elements with class="tabcontent" and remove the class "active"
