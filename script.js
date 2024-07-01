@@ -1,70 +1,67 @@
-// Ngrok URL to your Flask server (update this with your actual Ngrok URL)
-const ngrokUrl = 'https://b85f-35-234-34-227.ngrok-free.app'; // Replace with your Ngrok URL
+// Ngrok URL variable
+const ngrokUrl = 'https://b85f-35-234-34-227.ngrok-free.app';  // Replace <your_ngrok_url> with your actual ngrok URL
 
 function openTab(evt, tabName) {
-    // Hide all elements with class="tabcontent" and remove the class "active"
-    const tabcontents = document.getElementsByClassName("tabcontent");
-    for (let i = 0; i < tabcontents.length; i++) {
-        tabcontents[i].style.display = "none";
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
     }
-
-    // Show the specific tab content
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
     document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
 }
 
-async function summarizeHistory() {
-    const historyInput = document.getElementById('historyInput').value.trim();
-    if (!historyInput) {
-        alert('Please enter patient history.');
-        return;
-    }
+// Default open the Patient History tab
+document.getElementsByClassName("tablinks")[0].click();
 
-    try {
-        const response = await fetch(`${ngrokUrl}/summarize`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ history: historyInput })
-        });
-
+function summarizeHistory() {
+    const historyText = document.getElementById("historyText").value;
+    fetch(`${ngrokUrl}/summarize`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ history: historyText })
+    })
+    .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error('Network response was not ok');
         }
-
-        const data = await response.json();
-        document.getElementById('historySummary').innerText = data.summary;
-    } catch (error) {
-        console.error('Error summarizing history:', error);
-    }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById("historySummary").innerText = data.summary;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById("historySummary").innerText = 'Error occurred during summary';
+    });
 }
 
-async function suggestTreatment() {
-    const symptomsInput = document.getElementById('symptomsInput').value.trim();
-    if (!symptomsInput) {
-        alert('Please enter patient symptoms.');
-        return;
-    }
-
-    try {
-        const response = await fetch(`${ngrokUrl}/suggest`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ diagnosis: symptomsInput })
-        });
-
+function suggestTreatment() {
+    const symptomsText = document.getElementById("symptomsText").value;
+    fetch(`${ngrokUrl}/suggest`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ diagnosis: symptomsText })
+    })
+    .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error('Network response was not ok');
         }
-
-        const data = await response.json();
-        document.getElementById('treatmentSuggestions').innerText = data.suggestions;
-    } catch (error) {
-        console.error('Error suggesting treatment:', error);
-    }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById("treatmentSuggestions").innerText = data.suggestions;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById("treatmentSuggestions").innerText = 'Error occurred during treatment suggestion';
+    });
 }
-
-// Initial setup: Show default tab
-document.getElementById('patientHistory').style.display = 'block';
