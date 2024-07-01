@@ -1,0 +1,6 @@
+flask
+flask-cors
+pyngrok
+pytesseract
+pillow
+mistralai
