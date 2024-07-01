@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hospital Management System</h1>
+        <div class="tabs">
+            <button class="tablinks" onclick="openTab(event, 'PatientHistory')">Patient History</button>
+            <button class="tablinks" onclick="openTab(event, 'TreatmentSuggestion')">Treatment Suggestion</button>
+        </div>
+
+        <div id="PatientHistory" class="tabcontent">
+            <h2>Patient History</h2>
+            <textarea id="historyText" placeholder="Enter patient history here..."></textarea>
+            <button onclick="summarizeHistory()">Summarize History</button>
+            <p id="historySummary"></p>
+        </div>
+
+        <div id="TreatmentSuggestion" class="tabcontent">
+            <h2>Treatment Suggestion</h2>
+            <textarea id="symptomsText" placeholder="Enter symptoms here..."></textarea>
+            <button onclick="suggestTreatment()">Suggest Treatment</button>
+            <p id="treatmentSuggestions"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
