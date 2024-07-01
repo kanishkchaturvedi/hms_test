@@ -1,7 +1,3 @@
-!pip install openai pytesseract Pillow flask pyngrok Flask-CORS
-!pip install requests
-!pip install mistralai
-
 import json
 import pytesseract
 from PIL import Image
