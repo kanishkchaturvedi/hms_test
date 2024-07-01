@@ -2,26 +2,21 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.container {
-    width: 50%;
-    margin: auto;
-    padding: 20px;
+h1, h2 {
     text-align: center;
 }
 
-.tabs {
-    overflow: hidden;
-    border-bottom: 1px solid #ccc;
+#tabs {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .tablinks {
-    background-color: blue;
-    float: center;
-    border: none;
-    outline: none;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
     cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
+    transition: background-color 0.3s;
 }
 
 .tablinks:hover {
@@ -30,22 +25,25 @@ body {
 
 .tabcontent {
     display: none;
-    padding: 6px 12px;
-    border-top: none;
+    padding: 20px;
 }
 
-textarea {
+#historyInput, #symptomsInput {
     width: 100%;
-    height: 100px;
-    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
 }
 
 button {
-    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
