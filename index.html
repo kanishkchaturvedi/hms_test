@@ -7,31 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Hospital Management System</h1>
+    <div class="container">
+        <h1>Hospital Management System</h1>
+        <div class="tabs">
+            <button class="tablinks" onclick="openTab(event, 'PatientHistory')">Patient History</button>
+            <button class="tablinks" onclick="openTab(event, 'TreatmentSuggestion')">Treatment Suggestion</button>
+        </div>
 
-    <div id="tabs">
-        <button class="tablinks" onclick="openTab(event, 'patientHistory')">Patient History</button>
-        <button class="tablinks" onclick="openTab(event, 'treatmentSuggestion')">Treatment Suggestion</button>
+        <div id="PatientHistory" class="tabcontent">
+            <h2>Patient History</h2>
+            <textarea id="historyText" placeholder="Enter patient history here..."></textarea>
+            <button onclick="summarizeHistory()">Summarize History</button>
+            <p id="historySummary"></p>
+        </div>
+
+        <div id="TreatmentSuggestion" class="tabcontent">
+            <h2>Treatment Suggestion</h2>
+            <textarea id="symptomsText" placeholder="Enter symptoms here..."></textarea>
+            <button onclick="suggestTreatment()">Suggest Treatment</button>
+            <p id="treatmentSuggestions"></p>
+        </div>
     </div>
 
-    <div id="patientHistory" class="tabcontent">
-        <h2>Patient History</h2>
-        <textarea id="historyInput" rows="10" cols="50" placeholder="Enter patient history..."></textarea>
-        <br><br>
-        <button onclick="summarizeHistory()">Summarize History</button>
-        <br><br>
-        <div id="historySummary"></div>
-    </div>
-
-    <div id="treatmentSuggestion" class="tabcontent">
-        <h2>Treatment Suggestion</h2>
-        <textarea id="symptomsInput" rows="6" cols="50" placeholder="Enter patient symptoms..."></textarea>
-        <br><br>
-        <button onclick="suggestTreatment()">Suggest Treatment</button>
-        <br><br>
-        <div id="treatmentSuggestions"></div>
-    </div>
-
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
